@@ -45,7 +45,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="172dp"
-            android:text="result"
             android:textAlignment="center"
             android:textColor="#2236B5"
             android:textSize="24sp"
@@ -57,8 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="90dp"
-            android:text="Click here for more information"
+            android:layout_marginBottom="26dp"
             android:textAlignment="center"
             android:textColor="#8E24AA"
             android:textSize="20sp"
@@ -73,6 +71,16 @@
             android:text="Camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/sound"
+            android:layout_width="111dp"
+            android:layout_height="106dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="149dp"
+            android:layout_marginBottom="63dp"
+            app:srcCompat="@drawable/volume" />
 
     </RelativeLayout>
 

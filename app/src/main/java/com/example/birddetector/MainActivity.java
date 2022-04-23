@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import org.tensorflow.lite.support.label.Category;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     Button loadImage;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     TextView link;
     Uri imageUri;
     Button camera;
+    ImageView volume;
+    TextToSpeech textToSpeech;
     private static final int  pic_id=2;
     private static final int PICK_IMAGE=1;
     @Override
@@ -43,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
         result = findViewById(R.id.resultTextView);
         link = findViewById(R.id.linkTextView);
         camera = findViewById(R.id.cameraButton);
+        volume = findViewById(R.id.sound);
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i!=TextToSpeech.ERROR)
+                    textToSpeech.setLanguage(Locale.UK);
+            }
+        });
+        volume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textToSpeech.speak(result.getText().toString(),TextToSpeech.QUEUE_FLUSH,null);
+            }
+        });
         loadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //birdImage.setImageURI(imageUri);
                 birdImage.setImageBitmap(imageBitmap);
+                link.setText("Click here for more information");
                 outputGenerator(imageBitmap);
             }
                  break;
